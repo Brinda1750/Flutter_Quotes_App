@@ -2,13 +2,13 @@
 
 A beautiful and minimal **Flutter Quotes App** that displays inspirational and motivational quotes. Designed with clean UI and efficient navigation to help uplift your day, one quote at a time.
 
----
+
 
 ## ✨ Overview
 
 This is a simple Flutter application that displays a collection of inspirational quotes. Users can refresh to get new quotes, share quotes with others, and enjoy a clean light/dark theme toggle. It’s designed for both Android and iOS platforms with a smooth and responsive UI.
 
----
+
 
 ## 🚀 Features
 
@@ -18,7 +18,7 @@ This is a simple Flutter application that displays a collection of inspirational
 - 🌗 Light & dark theme support
 - 🎯 Minimal and user-friendly UI
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -27,7 +27,6 @@ This is a simple Flutter application that displays a collection of inspirational
   <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" />
 </p>
 
----
 
 ## 📸 Screenshots
 
@@ -35,9 +34,6 @@ This is a simple Flutter application that displays a collection of inspirational
 |------------------------|------------------------|
 | ![Light Mode](screenshots/light_mode.png) | ![Dark Mode](screenshots/dark_mode.png) |
 
-> Place the above screenshots inside a `screenshots/` folder in your project directory.
-
----
 
 ## 📦 Installation
 
@@ -61,6 +57,7 @@ This is a simple Flutter application that displays a collection of inspirational
    ```bash
    flutter run
 
+
 ## 🤝 Contributing
 
 Contributions are always welcome!
@@ -72,25 +69,13 @@ To contribute:
 4. Push to the branch (`git push origin feature-name`)  
 5. Open a pull request  
 
----
+
 
 ## 👩‍💻 Author
 
 - **Brinda** – [@Brinda1750](https://github.com/Brinda1750)
 
----
 
-## 📄 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
-## 🌟 Show your Support
-
-If you like this project, consider giving it a ⭐ on GitHub!
-
----
 
 ## 🔗 Useful Links
 
