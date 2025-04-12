@@ -1,0 +1,29 @@
+name: quotes_app
+description: A daily quotes app with categories and user authentication.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  http: ^1.1.0
+  shared_preferences: ^2.2.2
+  uuid: ^4.2.1
+  google_fonts: ^6.1.0
+  image_picker: ^1.0.5
+  path_provider: ^2.1.1
+  path: ^1.8.3
+  share_plus: ^7.2.1
+  provider: ^6.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
