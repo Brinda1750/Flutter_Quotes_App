@@ -1,12 +1,11 @@
 # 📱 Flutter Quotes App
 
-A beautiful and minimal **Flutter Quotes App** that displays inspirational and motivational quotes. Designed with clean UI and efficient navigation to help uplift your day, one quote at a time.
-
+This Flutter app features AI-powered quote generation across various categories. Users can effortlessly search for quotes, create their own, and share them with others. Designed with a clean and responsive interface, it delivers a seamless experience on both Android and iOS — offering daily motivation and inspiration at your fingertips.
 
 
 ## ✨ Overview
 
-This Flutter app features AI-powered quote generation across various categories. Users can effortlessly search for quotes, create their own, and share them with others. Designed with a clean and responsive interface, it delivers a seamless experience on both Android and iOS — offering daily motivation and inspiration at your fingertips.
+This Flutter app offers a collection of inspirational quotes, allowing users to generate personalized quotes using AI based on different categories. Users can easily search for new quotes, create their own, and share them with others. With a clean and responsive design, the app ensures a smooth experience on both Android and iOS devices, providing a quick source of motivation and inspiration whenever needed.
 
 
 
