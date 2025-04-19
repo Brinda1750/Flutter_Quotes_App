@@ -4,7 +4,7 @@ import 'package:quotes_app/components/quote_card.dart';
 import 'package:quotes_app/main.dart';
 import 'package:quotes_app/models/quote.dart';
 import 'package:quotes_app/pages/create_quote_page.dart';
-import 'package:quotes_app/services/quote_service.dart';
+import 'package:quotes_app/services/gemini_service.dart';
 import 'package:quotes_app/services/auth_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,30 +15,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final QuoteService _quoteService = QuoteService();
+  final GeminiService _geminiService = GeminiService();
   List<Quote> _quotes = [];
-  List<String> _categories = [];
+  List<String> _categories = ['Motivation', 'Success', 'Life', 'Love'];
   String _selectedCategory = 'All';
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _loadInitialQuotes();
   }
 
-  Future<void> _loadData() async {
-    setState(() {
-      _isLoading = true;
-    });
+  Future<void> _loadInitialQuotes() async {
+    setState(() => _isLoading = true);
 
     try {
-      final categories = await _quoteService.getCategories();
-      final quotes = await _quoteService.getRandomQuotes();
+      final quotes = await _geminiService.generateQuotes('motivation');
 
       if (mounted) {
         setState(() {
-          _categories = categories;
           _quotes = quotes;
           _isLoading = false;
         });
@@ -46,9 +42,7 @@ class _HomePageState extends State<HomePage> {
     } catch (e) {
       if (mounted) {
         context.showSnackBar('Failed to load quotes: $e', isError: true);
-        setState(() {
-          _isLoading = false;
-        });
+        setState(() => _isLoading = false);
       }
     }
   }
@@ -60,9 +54,9 @@ class _HomePageState extends State<HomePage> {
     });
 
     try {
-      final quotes = category == 'All'
-          ? await _quoteService.getRandomQuotes()
-          : await _quoteService.getQuotesByCategory(category);
+      List<Quote> quotes = await _geminiService.generateQuotes(
+        category == 'All' ? 'motivation' : category.toLowerCase(),
+      );
 
       if (mounted) {
         setState(() {
@@ -73,9 +67,7 @@ class _HomePageState extends State<HomePage> {
     } catch (e) {
       if (mounted) {
         context.showSnackBar('Failed to load quotes: $e', isError: true);
-        setState(() {
-          _isLoading = false;
-        });
+        setState(() => _isLoading = false);
       }
     }
   }
@@ -90,14 +82,14 @@ class _HomePageState extends State<HomePage> {
         onRefresh: () => _loadQuotesByCategory(_selectedCategory),
         child: Column(
           children: [
-            // Categories
+            // Category Selector
             CategoryList(
               categories: ['All', ..._categories],
               selectedCategory: _selectedCategory,
               onCategorySelected: _loadQuotesByCategory,
             ),
-            
-            // Quotes
+
+            // Display Quotes
             Expanded(
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -106,17 +98,11 @@ class _HomePageState extends State<HomePage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.format_quote,
-                                size: 80,
-                                color: Colors.grey[400],
-                              ),
+                              Icon(Icons.format_quote, size: 80, color: Colors.grey[400]),
                               const SizedBox(height: 16),
                               Text(
                                 'No quotes found',
-                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      color: Colors.grey[600],
-                                    ),
+                                style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.grey[600]),
                               ),
                             ],
                           ),
@@ -127,16 +113,7 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (context, index) {
                             return QuoteCard(
                               quote: _quotes[index],
-                              onBookmarkToggle: (quote, isBookmarked) async {
-                                final userId = authService.currentUser!.id;
-                                if (isBookmarked) {
-                                  await _quoteService.bookmarkQuote(quote, userId);
-                                  context.showSnackBar('Quote bookmarked');
-                                } else {
-                                  await _quoteService.removeBookmark(quote.id, userId);
-                                  context.showSnackBar('Bookmark removed');
-                                }
-                              },
+                              // No bookmark toggle
                             );
                           },
                         ),

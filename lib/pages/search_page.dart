@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:quotes_app/components/quote_card.dart';
 import 'package:quotes_app/models/quote.dart';
-import 'package:quotes_app/services/quote_service.dart';
+import 'package:uuid/uuid.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -11,55 +14,72 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final QuoteService _quoteService = QuoteService();
   final TextEditingController _searchController = TextEditingController();
-  List<Quote> _allQuotes = [];
-  List<Quote> _searchResults = [];
+  final List<Quote> _searchResults = [];
   bool _isLoading = false;
   bool _hasSearched = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchQuotes();
-  }
+  final GenerativeModel _model = GenerativeModel(
+    model: 'gemini-1.5-flash',
+    apiKey: 'AIzaSyARoHf2nsle8kkSnH45QjI-3g4_xpF4dog', // <-- Replace with your Gemini API Key
+  );
 
-  Future<void> _fetchQuotes() async {
-    setState(() => _isLoading = true);
-    try {
-      final quotes = await _quoteService.fetchQuotes(); // New method below
-      setState(() {
-        _allQuotes = quotes;
-        _isLoading = false;
-      });
-    } catch (e) {
-      setState(() => _isLoading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to load quotes: $e')),
-      );
-    }
-  }
-
-  void _searchQuotes(String query) {
-    final trimmedQuery = query.trim().toLowerCase();
-
-    if (trimmedQuery.isEmpty) {
-      setState(() {
-        _searchResults = [];
-        _hasSearched = false;
-      });
-      return;
-    }
-
-    final results = _allQuotes.where((quote) {
-      return quote.quote.toLowerCase().contains(trimmedQuery) ||
-             quote.author.toLowerCase().contains(trimmedQuery);
-    }).toList();
+  Future<void> _searchQuotes(String query) async {
+    if (query.trim().isEmpty) return;
 
     setState(() {
-      _searchResults = results;
+      _isLoading = true;
+      _searchResults.clear();
       _hasSearched = true;
     });
+
+    try {
+      final prompt = '''
+Generate 10 inspirational quotes about "$query". 
+Respond in JSON format like:
+[
+  {"text": "Your quote here", "author": "Author Name"},
+  ...
+]
+''';
+
+      final response = await _model.generateContent([Content.text(prompt)]);
+      final text = response.text;
+
+      if (text == null) {
+        throw Exception('Empty response from Gemini.');
+      }
+
+      // Parse the response into JSON
+      final parsedJson = text.trim().replaceAll('```json', '').replaceAll('```', '');
+      final List<dynamic> quotesJson = List.from(jsonDecode(parsedJson));
+
+      final List<Quote> quotes = quotesJson.map((json) {
+        return Quote(
+          id: const Uuid().v4(),
+          text: json['text'],
+          author: json['author'] ?? 'Unknown',
+          category: query,
+          isCustom: false,
+        );
+      }).toList();
+
+      setState(() {
+        _searchResults.addAll(quotes);
+      });
+    } catch (e) {
+      setState(() {
+        _searchResults.clear();
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.toString()}')),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -79,14 +99,17 @@ class _SearchPageState extends State<SearchPage> {
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search by keyword, author, or mood...',
+                hintText: 'Search by keyword (e.g., love, success, life)...',
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: _searchController.text.isNotEmpty
                     ? IconButton(
                         icon: const Icon(Icons.clear),
                         onPressed: () {
                           _searchController.clear();
-                          _searchQuotes('');
+                          setState(() {
+                            _searchResults.clear();
+                            _hasSearched = false;
+                          });
                         },
                       )
                     : null,
@@ -94,13 +117,6 @@ class _SearchPageState extends State<SearchPage> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onChanged: (value) {
-                if (value.length > 2) {
-                  _searchQuotes(value);
-                } else if (value.isEmpty) {
-                  _searchQuotes('');
-                }
-              },
               textInputAction: TextInputAction.search,
               onSubmitted: _searchQuotes,
             ),
@@ -129,7 +145,8 @@ class _SearchPageState extends State<SearchPage> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.sentiment_dissatisfied, size: 80, color: Colors.grey[400]),
+                                Icon(Icons.sentiment_dissatisfied,
+                                    size: 80, color: Colors.grey[400]),
                                 const SizedBox(height: 16),
                                 Text(
                                   'No quotes found',

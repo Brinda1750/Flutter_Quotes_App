@@ -12,7 +12,7 @@ class GeminiService {
   // In a real app, you would store this securely and not hardcode it
   static const String apiKey = 'AIzaSyARoHf2nsle8kkSnH45QjI-3g4_xpF4dog';
   
-  // Generate quotes using Gemini API
+  // Generate quotes  using Gemini API
   Future<List<Quote>> generateQuotes(String category, {int count = 10}) async {
     try {
       // In a real implementation, this would make an actual API call
