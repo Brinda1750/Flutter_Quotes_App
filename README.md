@@ -6,17 +6,19 @@ A beautiful and minimal **Flutter Quotes App** that displays inspirational and m
 
 ## ✨ Overview
 
-This is a simple Flutter application that displays a collection of inspirational quotes. Users can refresh to get new quotes, share quotes with others, and enjoy a clean light/dark theme toggle. It’s designed for both Android and iOS platforms with a smooth and responsive UI.
+This Flutter app offers a collection of inspirational quotes, allowing users to generate personalized quotes using AI based on different categories. Users can easily search for new quotes, create their own, and share them with others. With a clean and responsive design, the app ensures a smooth experience on both Android and iOS devices, providing a quick source of motivation and inspiration whenever needed.
 
 
 
 ## 🚀 Features
 
-- 📖 Display random quotes
-- 🔄 Refresh quotes with a tap
-- 📤 Share quotes easily with others
-- 🌗 Light & dark theme support
-- 🎯 Minimal and user-friendly UI
+- 🤖 AI-Generated Quotes by Category: Generate quotes tailored to various themes.
+- 🗂️ Categories Include: Motivation, Success, Life, Love, Wisdom, Happiness, and more.
+- 📖 Random Quote Display: View a fresh quote each time you open the app.
+- 🔄 Quick Quote Refresh: Tap to instantly get a new set of quotes.
+- 🔎 Effortless Quote Search: Easily search for any quote or topic of your choice.
+- 📤 Simple Sharing: Share your favorite quotes with friends and family effortlessly.
+- 🎯 Clean, Intuitive UI: Enjoy a sleek and easy-to-navigate interface.
 
 
 
@@ -30,10 +32,18 @@ This is a simple Flutter application that displays a collection of inspirational
 
 ## 📸 Screenshots
 
-| Home Page (Light Mode) | Home Page (Dark Mode) |
-|------------------------|------------------------|
-| ![Light Mode](screenshots/light_mode.png) | ![Dark Mode](screenshots/dark_mode.png) |
-
+<kbd>
+  <img src="./snapshorts/1.png" width=30% height=30%/>
+  <img src="./snapshorts/2.png" width=30% height=30%/>
+  <img src="./snapshorts/3.png" width=30% height=30%/>
+  <img src="./snapshorts/4.png" width=30% height=30%/>
+  <img src="./snapshorts/4-1.png" width=30% height=30%/>
+  <img src="./snapshorts/4-2.png" width=30% height=30%/>
+  <img src="./snapshorts/5.png" width=30% height=30%/>
+  <img src="./snapshorts/6.png" width=30% height=30%/>
+  <img src="./snapshorts/7.png" width=30% height=30%/>
+  <img src="./snapshorts/8.png" width=30% height=30%/>
+</kbd>
 
 ## 📦 Installation
 
