@@ -18,6 +18,7 @@ This Flutter app offers a collection of inspirational quotes, allowing users to 
 - 🔎 Effortless Quote Search: Easily search for any quote or topic of your choice.
 - 📤 Simple Sharing: Share your favorite quotes with friends and family effortlessly.
 - 🎯 Clean, Intuitive UI: Enjoy a sleek and easy-to-navigate interface.
+- 📒 Bookmark your favorite quotes to read later.
 
 
 
