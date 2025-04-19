@@ -32,17 +32,17 @@ This Flutter app offers a collection of inspirational quotes, allowing users to 
 
 ## 📸 Screenshots
 
-<kbd>
-  <img src="./snapshorts/1.png" width=30% height=30%/>
-  <img src="./snapshorts/2.png" width=30% height=30%/>
-  <img src="./snapshorts/3.png" width=30% height=30%/>
-  <img src="./snapshorts/4.png" width=30% height=30%/>
-  <img src="./snapshorts/4-1.png" width=30% height=30%/>
-  <img src="./snapshorts/4-2.png" width=30% height=30%/>
-  <img src="./snapshorts/5.png" width=30% height=30%/>
-  <img src="./snapshorts/6.png" width=30% height=30%/>
-  <img src="./snapshorts/7.png" width=30% height=30%/>
-  <img src="./snapshorts/8.png" width=30% height=30%/>
+<kbd align="left">
+  <img src="./snapshorts/1.png" width="32%" style="margin-right: 10px; margin-bottom: 10px;" />
+  <img src="./snapshorts/2.png" width="32%" style="margin-right: 10px; margin-bottom: 10px;" />
+  <img src="./snapshorts/3.png" width="31.8%" style="margin-right: 10px; margin-bottom: 10px;" />
+  <img src="./snapshorts/4.png" width="32%" style="margin-right: 10px; margin-bottom: 10px;" />
+  <img src="./snapshorts/4-1.png" width="32%" style="margin-right: 10px; margin-bottom: 10px;" />
+  <img src="./snapshorts/4-2.png" width="32%" style="margin-right: 10px; margin-bottom: 10px;" />
+  <img src="./snapshorts/5.png" width="32%" style="margin-right: 10px; margin-bottom: 10px;" />
+  <img src="./snapshorts/6.png" width="32%" style="margin-right: 10px; margin-bottom: 10px;" />
+  <img src="./snapshorts/7.png" width="32%" style="margin-right: 10px; margin-bottom: 10px;" />
+  <img src="./snapshorts/8.png" width="32%" style="margin-right: 10px; margin-bottom: 10px;" />
 </kbd>
 
 ## 📦 Installation
