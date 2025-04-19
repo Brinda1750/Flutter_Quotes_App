@@ -6,7 +6,7 @@ A beautiful and minimal **Flutter Quotes App** that displays inspirational and m
 
 ## ✨ Overview
 
-This Flutter app offers a collection of inspirational quotes, allowing users to generate personalized quotes using AI based on different categories. Users can easily search for new quotes, create their own, and share them with others. With a clean and responsive design, the app ensures a smooth experience on both Android and iOS devices, providing a quick source of motivation and inspiration whenever needed.
+This Flutter app features AI-powered quote generation across various categories. Users can effortlessly search for quotes, create their own, and share them with others. Designed with a clean and responsive interface, it delivers a seamless experience on both Android and iOS — offering daily motivation and inspiration at your fingertips.
 
 
 
@@ -66,6 +66,12 @@ This Flutter app offers a collection of inspirational quotes, allowing users to 
 3. **Run the app**
    ```bash
    flutter run
+
+
+## 🧠 AI Chatbot (Google Gemini) Setup:
+
+To use the **Gemini AI Chatbot** feature, you need to provide your own API key.  
+Create an API key by visiting [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 
 ## 🤝 Contributing
