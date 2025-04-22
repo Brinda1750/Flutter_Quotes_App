@@ -8,6 +8,39 @@ This Flutter app features AI-powered quote generation across various categories.
 This Flutter app offers a collection of inspirational quotes, allowing users to generate personalized quotes using AI based on different categories. Users can easily search for new quotes, create their own, and share them with others. With a clean and responsive design, the app ensures a smooth experience on both Android and iOS devices, providing a quick source of motivation and inspiration whenever needed.
 
 
+## 🛠️ System Architecture
+
+```
+quotes_app/
+├── lib/
+│   ├── api/
+│   │   └── google_gemini_service.dart    # AI service to interact with Google Gemini API
+│   ├── models/
+│   │   ├── quote.dart                   # Model representing a quote
+│   │   └── category.dart                # Model representing a quote category
+│   ├── screens/
+│   │   ├── home_screen.dart             # Home screen displaying random quotes
+│   │   ├── generate_screen.dart         # Screen for generating AI-powered quotes
+│   │   ├── favorites_screen.dart        # Screen for displaying saved quotes
+│   │   └── search_screen.dart           # Screen for searching quotes
+│   ├── widgets/
+│   │   ├── quote_card.dart              # Reusable UI widget for displaying quotes
+│   │   └── category_tile.dart           # UI widget for category selection
+│   ├── services/
+│   │   ├── storage_service.dart         # Service for managing local storage (bookmarks)
+│   │   └── share_service.dart           # Service for sharing quotes
+│   ├── utils/
+│   │   ├── constants.dart              # Constants like API keys, app settings
+│   │   └── helpers.dart                # Helper functions used across the app
+│   └── main.dart                        # Entry point of the app
+├── assets/
+│   ├── fonts/                          # Custom fonts used in the app
+│   └── images/                         # App images and icons
+├── pubspec.yaml                        # Flutter dependencies and settings
+└── README.md                           # Project documentation
+
+```
+
 
 ## 🚀 Features
 
@@ -85,6 +118,15 @@ To contribute:
 4. Push to the branch (`git push origin feature-name`)  
 5. Open a pull request  
 
+
+## 🔮 Future Work
+
+- 🔐 User Authentication: Integrate Firebase Auth for personalized profiles.
+- ☁️ Cloud Sync: Save bookmarks and custom quotes to Firestore.
+- 📅 Daily Notifications: Schedule daily motivational quotes.
+- 🌐 Localization: Support multiple languages.
+- 🖌️ Theming: Add light/dark mode and custom themes.
+- 📊 Analytics: Track popular quotes and user engagement.
 
 
 ## 👩‍💻 Author
