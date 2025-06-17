@@ -18,5 +18,9 @@ phases:
     commands:
       - echo "Deploying to EC2..."
       - echo "$EC2_SSH_KEY" > ec2-key.pem
-      - chmod 600 ec2_key.pem
-      - scp -o StrictHostKeyChecking=no -i ec2_key.pem -r build/web/* ubuntu@3.148.230.242:/var/www/flutter
+      - chmod 600 ec2-key.pem
+      - scp -o StrictHostKeyChecking=no -i ec2-key.pem -r build/web/* ubuntu@3.148.230.242:/var/www/flutter
+
+artifacts:
+  files:
+    - '**/*'
