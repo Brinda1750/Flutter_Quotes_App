@@ -3,26 +3,42 @@ version: 0.2
 phases:
   install:
     commands:
+      - echo "🔧 Updating system packages"
       - apt-get update
       - apt-get install -y curl unzip git xz-utils build-essential libglu1-mesa
+
+      - echo "📦 Downloading Flutter SDK"
       - curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.32.4-stable.tar.xz
       - tar xf flutter_linux_3.32.4-stable.tar.xz
       - export PATH="$PATH:$PWD/flutter/bin"
-      - git config --global --add safe.directory "$PWD/flutter"    # ✅ Add this line
+
+      - echo "✅ Adding Flutter to Git safe directory"
+      - git config --global --add safe.directory "$PWD/flutter"
+
+      - echo "🩺 Running flutter doctor"
       - flutter doctor
+
+      - echo "🌐 Enabling web support"
       - flutter config --enable-web
 
   build:
     commands:
+      - echo "📦 Getting dependencies"
       - flutter pub get
+
+      - echo "🚀 Building Flutter Web App"
       - flutter build web --release --web-renderer html
+
   post_build:
     commands:
-      - echo "Deploying to EC2..."
+      - echo "🔐 Preparing SSH Key"
       - echo "$EC2_SSH_KEY" | base64 -d > ec2-key.pem
       - chmod 600 ec2-key.pem
+
+      - echo "📤 Deploying to EC2..."
       - scp -o StrictHostKeyChecking=no -i ec2-key.pem -r build/web/* ubuntu@3.148.230.242:/var/www/flutter
 
 artifacts:
+  base-directory: build/web
   files:
     - '**/*'
