@@ -5,8 +5,8 @@ phases:
     commands:
       - apt-get update
       - apt-get install -y curl unzip git xz-utils build-essential libglu1-mesa
-      - curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.1-stable.tar.xz
-      - tar xf flutter_linux_3.22.1-stable.tar.xz
+      - curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.32.4-stable.tar.xz
+      - tar xf flutter_linux_3.32.4-stable.tar.xz
       - export PATH="$PATH:$PWD/flutter/bin"
       - flutter doctor
       - flutter config --enable-web
@@ -17,7 +17,7 @@ phases:
   post_build:
     commands:
       - echo "Deploying to EC2..."
-      - echo "$EC2_SSH_KEY" > ec2-key.pem
+      - echo "$EC2_SSH_KEY" | base64 -d > ec2-key.pem
       - chmod 600 ec2-key.pem
       - scp -o StrictHostKeyChecking=no -i ec2-key.pem -r build/web/* ubuntu@3.148.230.242:/var/www/flutter
 
