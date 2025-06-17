@@ -8,8 +8,10 @@ phases:
       - curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.32.4-stable.tar.xz
       - tar xf flutter_linux_3.32.4-stable.tar.xz
       - export PATH="$PATH:$PWD/flutter/bin"
+      - git config --global --add safe.directory "$PWD/flutter"    # ✅ Add this line
       - flutter doctor
       - flutter config --enable-web
+
   build:
     commands:
       - flutter pub get
